@@ -1,0 +1,14 @@
+
+    
+    
+    
+    create table "dbt_prod"."cayoty"."SalesTarget" ("StoreID" integer,"SalesTarget" integer)
+  ;
+    -- dbt seed --
+    
+          insert into "dbt_prod"."cayoty"."SalesTarget" ("StoreID", "SalesTarget") values
+          (%s,%s),(%s,%s),(%s,%s),(%s,%s),(%s,%s),(%s,%s),(%s,%s),(%s,%s),(%s,%s),(%s,%s)
+      
+
+;
+  

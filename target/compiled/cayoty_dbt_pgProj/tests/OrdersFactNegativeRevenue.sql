@@ -1,0 +1,4 @@
+-- SELECT 
+-- OrderID
+-- FROM "dbt_prod"."cayoty"."Orders_fact"
+-- WHERE Revenue < 0

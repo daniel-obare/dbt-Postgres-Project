@@ -1,0 +1,40 @@
+models:
+  - name: customers_stg
+    description: staged customer data with minor row level transformations
+    columns:
+      - name: Email
+        description: customer primary email for promotions and offers
+        tests: 
+          - string_not_empty
+
+  - name: orders_stg
+    description: staged orders data with minor row level transformations
+    columns:
+      - name: OrderID
+        description: unique identifier of the order
+        tests: 
+          - unique
+          - not_null
+
+      - name: StatusID
+        description: "{{ doc('StatusID') }}"
+        tests: 
+          - accepted_values:
+              #values: ['01', '02', '03']
+              values: ['Pending']
+
+  # - name: employees_stg
+  #   columns:
+  #     - name: JobTitle
+  #       description: employee job title based on current role and responsibilities
+  #       tests: 
+  #         - string_not_empty
+
+  - name: order_items_stg 
+    description: order items customer data with minor row level transformations
+    columns:
+      - name: OrderID
+        tests: 
+          - relationships:
+              to: ref('orders_stg')
+              field: OrderID

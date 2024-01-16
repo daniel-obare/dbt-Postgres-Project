@@ -1,0 +1,39 @@
+sources:
+  - name: schema_name
+    database: dbt_prod
+    schema: cayoty
+    freshness: 
+      warn_after: {count: 1, period: day}
+      error_after: {count: 3, period: day}
+    loaded_at_field: updatedat
+
+    tables: 
+      - name: cust
+        description: customer table
+        identifier: customers
+        #run tests from source file
+        columns:
+          - name: Email
+            tests: 
+              - string_not_empty
+              - not_null
+      - name: emp
+        description: employees table
+        identifier: employees
+      - name: ordr
+        description: orders table
+        identifier: orders
+      - name: ordritms
+        identifier: orderitems
+      - name: prdts
+        description: products table
+        identifier: products
+      - name: tgts
+        description: targets table
+        identifier: sales_target
+      - name: str
+        description: stores table
+        identifier: stores
+      - name: sup
+        description: supplier table
+        identifier: suppliers    
